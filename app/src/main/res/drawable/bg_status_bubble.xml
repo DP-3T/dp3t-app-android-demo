@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ubique Innovation AG
+  ~ https://www.ubique.ch
+  ~ Copyright (c) 2020. All rights reserved.
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+	<solid android:color="@color/blue_main"/>
+	<corners android:radius="@dimen/message_bubble_corner_radius"/>
+</shape>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ubique Innovation AG
+  ~ https://www.ubique.ch
+  ~ Copyright (c) 2020. All rights reserved.
+  -->
+
+<resources>
+	<color name="colorPrimary">@color/green_main</color>
+	<color name="colorPrimaryDark">@color/dark_main</color>
+	<color name="colorAccent">@color/green_main</color>
+	<color name="colorControlHighlight">#FFCC00</color>
+
+	<color name="dark_main">#535263</color>
+	<color name="blue_main">#5559A0</color>
+	<color name="green_main">#00BFA6</color>
+	<color name="red_main">#FF6584</color>
+
+	<color name="background_light">#FFF</color>
+	<color name="color_selected">@color/green_main</color>
+	<color name="color_deselected">#22000000</color>
+	<color name="white">#FFFFFF</color>
+	<color name="grey_dark">#80535263</color>
+	<color name="grey_dark_lighter">#DFDFDF</color>
+	<color name="grey_medium">#E5E5E5</color>
+	<color name="grey_light_darker">#E9E9E9</color>
+	<color name="grey_light">#F7F7F7</color>
+
+	<color name="status_green">#2BD9C2</color>
+	<color name="status_green_bg">#D3F2EE</color>
+	<color name="status_red">@color/red_main</color>
+	<color name="status_blue">@color/blue_main</color>
+	<color name="status_arc">#1F000000</color>
+
+	<color name="divider">#0D000000</color>
+</resources>

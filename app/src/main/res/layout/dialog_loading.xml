@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ubique Innovation AG
+  ~ https://www.ubique.ch
+  ~ Copyright (c) 2020. All rights reserved.
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:padding="@dimen/spacing_huge">
+
+	<ProgressBar
+		android:layout_width="@dimen/size_progress_bar"
+		android:layout_height="@dimen/size_progress_bar"
+		android:layout_gravity="center" />
+
+</FrameLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ubique Innovation AG
+  ~ https://www.ubique.ch
+  ~ Copyright (c) 2020. All rights reserved.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:padding="@dimen/spacing_medium_large">
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:orientation="vertical">
+
+			<TextView
+				style="@style/NextStep.Text.Title"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="bottom|center_horizontal"
+				android:text="@string/inform_send_thankyou"
+				android:textAllCaps="true"
+				android:textColor="@color/green_main" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/spacing_large"
+				android:gravity="center_horizontal"
+				android:paddingStart="@dimen/spacing_huge"
+				android:paddingEnd="@dimen/spacing_huge"
+				android:text="@string/inform_send_thankyou_text" />
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="@dimen/spacing_huge"
+				android:layout_gravity="center_horizontal"
+				android:src="@drawable/ic_thank_you" />
+		</LinearLayout>
+	</ScrollView>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:layout_marginTop="@dimen/spacing_medium_large"
+		android:layout_marginBottom="@dimen/spacing_medium_large"
+		android:background="@color/grey_light" />
+
+	<Button
+		android:id="@+id/thank_you_fragment_button_done"
+		style="@style/NextStep.Button.Green"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_margin="@dimen/spacing_medium"
+		android:text="@string/inform_fertig_button_title" />
+
+</LinearLayout>

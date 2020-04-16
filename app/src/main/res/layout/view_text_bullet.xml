@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ubique Innovation AG
+  ~ https://www.ubique.ch
+  ~ Copyright (c) 2020. All rights reserved.
+  -->
+
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="5sp"
+	android:layout_height="5sp"
+	android:layout_marginStart="10sp"
+	android:layout_marginTop="9sp"
+	android:layout_marginEnd="14sp"
+	android:layout_marginBottom="9sp"
+	android:src="@drawable/ic_text_bullet"
+	tools:ignore="ContentDescription" />

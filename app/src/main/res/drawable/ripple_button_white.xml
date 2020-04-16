@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ubique Innovation AG
+  ~ https://www.ubique.ch
+  ~ Copyright (c) 2020. All rights reserved.
+  -->
+
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+	android:color="#FFFFFF">
+	<item android:id="@android:id/mask">
+		<shape android:shape="rectangle">
+			<corners android:radius="@dimen/button_corner_radius"/>
+			<solid android:color="#000000" />
+		</shape>
+	</item>
+</ripple>

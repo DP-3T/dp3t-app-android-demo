@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ubique Innovation AG
+  ~ https://www.ubique.ch
+  ~ Copyright (c) 2020. All rights reserved.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/white"
+	android:gravity="center_horizontal"
+	android:orientation="vertical">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/start"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="start" />
+
+		<Button
+			android:id="@+id/stop"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="stop" />
+
+	</LinearLayout>
+
+	<Button
+		android:id="@+id/battery_optimization"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="disable battery optimization" />
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="center"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@android:color/background_light"
+			android:elevation="2dp"
+			android:orientation="horizontal">
+
+			<Spinner
+				android:id="@+id/logs_filter_level"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+			<MultiAutoCompleteTextView
+				android:id="@+id/logs_filter_tag"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/logs_filter_tags" />
+
+		</LinearLayout>
+
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/logs_list"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:scrollbars="vertical"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				app:stackFromEnd="true"
+				tools:listitem="@layout/view_log_entry" />
+
+			<com.google.android.material.floatingactionbutton.FloatingActionButton
+				android:id="@+id/logs_scrolltobottom"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="bottom|right"
+				android:layout_margin="16dp"
+				android:src="@drawable/ic_to_bottom"
+				app:tint="@color/white"
+				app:fabSize="mini" />
+
+		</FrameLayout>
+
+	</LinearLayout>
+
+</LinearLayout>

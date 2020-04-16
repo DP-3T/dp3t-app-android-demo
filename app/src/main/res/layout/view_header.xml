@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ubique Innovation AG
+  ~ https://www.ubique.ch
+  ~ Copyright (c) 2020. All rights reserved.
+  -->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:layout_height="@dimen/header_height"
+	tools:layout_width="match_parent"
+	tools:parentTag="android.widget.FrameLayout">
+
+	<ImageView
+		android:id="@+id/main_header_icon_bg"
+		android:layout_width="wrap_content"
+		android:layout_height="@dimen/header_size_bg"
+		android:layout_gravity="center"
+		android:scaleType="fitCenter"
+		tools:src="@drawable/ic_header_background" />
+
+	<ImageView
+		android:id="@+id/main_header_icon"
+		android:layout_width="@dimen/header_size_icon"
+		android:layout_height="@dimen/header_size_icon"
+		android:layout_gravity="center"
+		android:scaleType="fitCenter"
+		tools:src="@drawable/ic_header_check" />
+
+</merge>

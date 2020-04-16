@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ubique Innovation AG
+  ~ https://www.ubique.ch
+  ~ Copyright (c) 2020. All rights reserved.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center_horizontal"
+	android:orientation="vertical"
+	android:paddingStart="@dimen/spacing_huge"
+	android:paddingTop="@dimen/spacing_huge"
+	android:paddingEnd="@dimen/spacing_huge"
+	android:paddingBottom="@dimen/spacing_large">
+
+	<TextView
+		style="@style/NextStep.Text.Small"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/spacing_very_large"
+		android:gravity="center_horizontal"
+		android:text="@string/onboarding_top_label_how" />
+
+	<ImageView
+		android:id="@+id/onboarding_illustration"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/illustration_height"
+		android:layout_marginBottom="@dimen/spacing_large"
+		android:scaleType="fitCenter" />
+
+	<TextView
+		android:id="@+id/onboarding_title"
+		style="@style/NextStep.Text.Title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/spacing_medium"
+		android:layout_marginBottom="@dimen/spacing_large"
+		android:gravity="center_horizontal"
+		tools:text="Titel" />
+
+	<TextView
+		android:id="@+id/onboarding_description"
+		style="@style/NextStep.Text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		tools:text="Description" />
+
+</LinearLayout>

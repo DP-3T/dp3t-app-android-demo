@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ubique Innovation AG
+  ~ https://www.ubique.ch
+  ~ Copyright (c) 2020. All rights reserved.
+  -->
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/NextStep.Card"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+	<LinearLayout
+		android:id="@+id/card_notifications"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:foreground="?selectableItemBackground"
+		android:orientation="vertical"
+		android:paddingTop="@dimen/spacing_medium"
+		android:paddingBottom="@dimen/spacing_medium">
+
+		<LinearLayout
+			android:id="@+id/notifications_header"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center_vertical"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:layout_width="@dimen/icon_size_title"
+				android:layout_height="@dimen/icon_size_title"
+				android:layout_marginStart="@dimen/spacing_large"
+				android:src="@drawable/ic_message"
+				android:tint="@color/blue_main" />
+
+			<TextView
+				style="@style/NextStep.Text.Title"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/spacing_medium"
+				android:layout_weight="1"
+				android:text="@string/reports_title_homescreen" />
+
+			<ImageView
+				android:layout_width="@dimen/chevron_size_title"
+				android:layout_height="@dimen/chevron_size_title"
+				android:src="@drawable/ic_chevron_right"
+				android:tint="@color/blue_main" />
+
+		</LinearLayout>
+
+		<FrameLayout
+			android:id="@+id/notifications_status_bubble"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/spacing_medium"
+			android:background="@drawable/bg_status_bubble"
+			android:paddingStart="@dimen/spacing_medium"
+			android:paddingTop="@dimen/spacing_medium_large"
+			android:paddingEnd="@dimen/spacing_medium"
+			android:paddingBottom="@dimen/spacing_medium_large">
+
+			<include
+				android:id="@+id/notification_status"
+				layout="@layout/layout_status" />
+
+		</FrameLayout>
+
+	</LinearLayout>
+
+</androidx.cardview.widget.CardView>
