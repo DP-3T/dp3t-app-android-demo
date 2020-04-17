@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
+import org.dpppt.android.app.debug.DebugFragment;
 import org.dpppt.android.app.main.model.AppState;
 import org.dpppt.android.app.main.views.HeaderView;
 import org.dpppt.android.sdk.TracingStatus;
@@ -50,6 +51,7 @@ public class MainFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		setupHeader(view);
 		setupCards(view);
+		setupDebugButton(view);
 	}
 
 	@Override
@@ -123,5 +125,15 @@ public class MainFragment extends Fragment {
 					TracingStatusHelper.updateStatusView(notificationStatusView, state, title, text);
 				});
 	}
+
+	private void setupDebugButton(View view) {
+		View buttonInform = view.findViewById(R.id.main_button_debug);
+		buttonInform.setOnClickListener(
+				v -> getParentFragmentManager().beginTransaction()
+						.replace(R.id.main_fragment_container, DebugFragment.newInstance())
+						.addToBackStack(DebugFragment.class.getCanonicalName())
+						.commit());
+	}
+
 
 }

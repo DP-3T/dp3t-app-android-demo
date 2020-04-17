@@ -3,7 +3,6 @@
  * https://www.ubique.ch
  * Copyright (c) 2020. All rights reserved.
  */
-
 package org.dpppt.android.app.main;
 
 import android.app.Application;
@@ -21,6 +20,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.Collections;
 import java.util.List;
 
+import org.dpppt.android.app.debug.model.DebugAppState;
 import org.dpppt.android.app.util.DeviceFeatureHelper;
 import org.dpppt.android.sdk.DP3T;
 import org.dpppt.android.sdk.TracingStatus;
@@ -54,22 +54,39 @@ public class TracingViewModel extends AndroidViewModel {
 		}
 	};
 
+	private DebugAppState debugAppState = DebugAppState.NONE;
+
 	public TracingViewModel(@NonNull Application application) {
 		super(application);
 
 		tracingStatusLiveData.observeForever(status -> {
 			tracingEnabledLiveData.setValue(status.isAdvertising() && status.isReceiving());
 			numberOfHandshakesLiveData.setValue(status.getNumberOfHandshakes());
-			exposedLiveData.setValue(new Pair<>(status.isReportedAsExposed(), status.wasContactExposed()));
+
+			boolean isReportedExposed = debugAppState == DebugAppState.REPORTED_EXPOSED || status.isReportedAsExposed();
+			boolean isContactExposed = debugAppState == DebugAppState.CONTACT_EXPOSED || status.wasContactExposed();
+			exposedLiveData.setValue(new Pair<>(isReportedExposed, isContactExposed));
+
 			errorsLiveData.setValue(status.getErrors());
 
 			boolean hasError = status.getErrors().size() > 0 || !(status.isAdvertising() || status.isReceiving());
-			if (status.isReportedAsExposed() || status.wasContactExposed()) {
-				appStateLiveData.setValue(hasError ? AppState.EXPOSED_ERROR : AppState.EXPOSED);
-			} else if (hasError) {
-				appStateLiveData.setValue(AppState.ERROR);
-			} else {
-				appStateLiveData.setValue(AppState.TRACING);
+			switch (debugAppState) {
+				case NONE:
+					if (status.isReportedAsExposed() || status.wasContactExposed()) {
+						appStateLiveData.setValue(hasError ? AppState.EXPOSED_ERROR : AppState.EXPOSED);
+					} else if (hasError) {
+						appStateLiveData.setValue(AppState.ERROR);
+					} else {
+						appStateLiveData.setValue(AppState.TRACING);
+					}
+					break;
+				case HEALTHY:
+					appStateLiveData.setValue(hasError ? AppState.ERROR : AppState.TRACING);
+					break;
+				case REPORTED_EXPOSED:
+				case CONTACT_EXPOSED:
+					appStateLiveData.setValue(hasError ? AppState.EXPOSED_ERROR : AppState.EXPOSED);
+					break;
 			}
 		});
 
@@ -78,6 +95,12 @@ public class TracingViewModel extends AndroidViewModel {
 
 		application.registerReceiver(tracingStatusBroadcastReceiver, DP3T.getUpdateIntentFilter());
 		application.registerReceiver(bluetoothReceiver, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
+	}
+
+	public void resetSdk(Runnable onDeleteListener) {
+		if (tracingEnabledLiveData.getValue()) DP3T.stop(getApplication());
+		debugAppState = DebugAppState.NONE;
+		DP3T.clearData(getApplication(), onDeleteListener);
 	}
 
 	public void invalidateTracingStatus() {
@@ -132,6 +155,14 @@ public class TracingViewModel extends AndroidViewModel {
 	protected void onCleared() {
 		getApplication().unregisterReceiver(tracingStatusBroadcastReceiver);
 		getApplication().unregisterReceiver(bluetoothReceiver);
+	}
+
+	public DebugAppState getDebugAppState() {
+		return debugAppState;
+	}
+
+	public void setDebugAppState(DebugAppState debugAppState) {
+		this.debugAppState = debugAppState;
 	}
 
 }
