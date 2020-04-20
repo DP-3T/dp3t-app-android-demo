@@ -1,4 +1,4 @@
-package org.dppt.android.app.debug;
+package org.dpppt.android.app.debug;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.dpppt.android.app.R;
 import org.dpppt.android.app.contacts.ContactsFragment;
-import org.dppt.android.app.debug.DebugFragment;
+import org.dpppt.android.app.debug.DebugFragment;
 import org.dpppt.android.app.util.DebugUtils;
 import org.dpppt.android.app.main.views.HeaderView;
 import org.dpppt.android.app.notifications.NotificationsFragment;

@@ -1,4 +1,4 @@
-package org.dppt.android.app.debug;
+package org.dpppt.android.app.debug;
 
 import android.app.AlertDialog;
 import android.content.res.ColorStateList;

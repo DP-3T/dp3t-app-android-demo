@@ -1,4 +1,4 @@
-package org.dppt.android.app.debug;
+package org.dpppt.android.app.debug;
 
 import org.dpppt.android.app.debug.model.DebugAppState;
 import org.dpppt.android.app.main.model.AppState;
@@ -11,7 +11,7 @@ public class TracingStatusWrapper implements TracingStatusInterface {
 	private TracingStatus status;
 
 	public TracingStatusWrapper(DebugAppState debugAppState) {
-		this.debugAppState = DebugAppState.NONE; ;
+		this.debugAppState = debugAppState;
 	}
 
 	public void setStatus(TracingStatus status) {
@@ -20,34 +20,43 @@ public class TracingStatusWrapper implements TracingStatusInterface {
 
 	@Override
 	public boolean isReportedAsExposed() {
-		return status.isReportedAsExposed();
+		return status.isReportedAsExposed() || debugAppState == DebugAppState.REPORTED_EXPOSED;
 	}
 
 	@Override
 	public boolean wasContactExposed() {
-		return status.wasContactExposed();
+		return status.wasContactExposed() || debugAppState == DebugAppState.CONTACT_EXPOSED;
 	}
 
 	@Override
 	public void setDebugAppState(DebugAppState debugAppState) {
-		//do not implement
+		this.debugAppState = debugAppState;
 	}
 
 	@Override
 	public DebugAppState getDebugAppState() {
-		return DebugAppState.NONE;
+		return debugAppState;
 	}
 
 	@Override
 	public AppState getAppState() {
 		boolean hasError = status.getErrors().size() > 0 || !(status.isAdvertising() || status.isReceiving());
-		if (status.isReportedAsExposed() || status.wasContactExposed()) {
-			return hasError ? AppState.EXPOSED_ERROR : AppState.EXPOSED;
-		} else if (hasError) {
-			return AppState.ERROR;
-		} else {
-			return AppState.TRACING;
+		switch (debugAppState) {
+			case NONE:
+				if (status.isReportedAsExposed() || status.wasContactExposed()) {
+					return hasError ? AppState.EXPOSED_ERROR : AppState.EXPOSED;
+				} else if (hasError) {
+					return AppState.ERROR;
+				} else {
+					return AppState.TRACING;
+				}
+			case HEALTHY:
+				return hasError ? AppState.ERROR : AppState.TRACING;
+			case REPORTED_EXPOSED:
+			case CONTACT_EXPOSED:
+				return hasError ? AppState.EXPOSED_ERROR : AppState.EXPOSED;
 		}
+		return AppState.ERROR;
 	}
 
 }

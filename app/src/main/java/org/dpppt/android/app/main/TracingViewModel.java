@@ -25,7 +25,7 @@ import org.dpppt.android.app.main.model.AppState;
 import org.dpppt.android.app.util.DeviceFeatureHelper;
 import org.dpppt.android.sdk.DP3T;
 import org.dpppt.android.sdk.TracingStatus;
-import org.dppt.android.app.debug.TracingStatusWrapper;
+import org.dpppt.android.app.debug.TracingStatusWrapper;
 
 public class TracingViewModel extends AndroidViewModel {
 
