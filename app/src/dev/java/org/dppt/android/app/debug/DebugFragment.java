@@ -1,4 +1,4 @@
-package org.dpppt.android.app.debug;
+package org.dppt.android.app.debug;
 
 import android.app.AlertDialog;
 import android.content.res.ColorStateList;
@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import java.text.DateFormat;
@@ -34,12 +35,19 @@ public class DebugFragment extends Fragment {
 	private static final DateFormat DATE_FORMAT_SYNC = SimpleDateFormat.getDateTimeInstance();
 	private TracingViewModel tracingViewModel;
 
-	public static DebugFragment newInstance() {
+	private static DebugFragment newInstance() {
 		return new DebugFragment();
 	}
 
 	public DebugFragment() {
 		super(R.layout.fragment_debug);
+	}
+
+	public static void startDebugFragment(FragmentManager parentFragmentManager) {
+		parentFragmentManager.beginTransaction()
+				.replace(R.id.main_fragment_container, DebugFragment.newInstance())
+				.addToBackStack(DebugFragment.class.getCanonicalName())
+				.commit();
 	}
 
 	@Override

@@ -21,11 +21,11 @@ import java.util.Collections;
 import java.util.List;
 
 import org.dpppt.android.app.debug.model.DebugAppState;
+import org.dpppt.android.app.main.model.AppState;
 import org.dpppt.android.app.util.DeviceFeatureHelper;
 import org.dpppt.android.sdk.DP3T;
 import org.dpppt.android.sdk.TracingStatus;
-
-import org.dpppt.android.app.main.model.AppState;
+import org.dppt.android.app.debug.TracingStatusWrapper;
 
 public class TracingViewModel extends AndroidViewModel {
 
@@ -54,7 +54,7 @@ public class TracingViewModel extends AndroidViewModel {
 		}
 	};
 
-	private DebugAppState debugAppState = DebugAppState.NONE;
+	private TracingStatusWrapper tracingStatusWrapper = new TracingStatusWrapper(DebugAppState.NONE);
 
 	public TracingViewModel(@NonNull Application application) {
 		super(application);
@@ -62,32 +62,15 @@ public class TracingViewModel extends AndroidViewModel {
 		tracingStatusLiveData.observeForever(status -> {
 			tracingEnabledLiveData.setValue(status.isAdvertising() && status.isReceiving());
 			numberOfHandshakesLiveData.setValue(status.getNumberOfHandshakes());
+			tracingStatusWrapper.setStatus(status);
+			boolean isReportedExposed = tracingStatusWrapper.isReportedAsExposed();
+			boolean isContactExposed = tracingStatusWrapper.wasContactExposed();
 
-			boolean isReportedExposed = debugAppState == DebugAppState.REPORTED_EXPOSED || status.isReportedAsExposed();
-			boolean isContactExposed = debugAppState == DebugAppState.CONTACT_EXPOSED || status.wasContactExposed();
 			exposedLiveData.setValue(new Pair<>(isReportedExposed, isContactExposed));
 
 			errorsLiveData.setValue(status.getErrors());
 
-			boolean hasError = status.getErrors().size() > 0 || !(status.isAdvertising() || status.isReceiving());
-			switch (debugAppState) {
-				case NONE:
-					if (status.isReportedAsExposed() || status.wasContactExposed()) {
-						appStateLiveData.setValue(hasError ? AppState.EXPOSED_ERROR : AppState.EXPOSED);
-					} else if (hasError) {
-						appStateLiveData.setValue(AppState.ERROR);
-					} else {
-						appStateLiveData.setValue(AppState.TRACING);
-					}
-					break;
-				case HEALTHY:
-					appStateLiveData.setValue(hasError ? AppState.ERROR : AppState.TRACING);
-					break;
-				case REPORTED_EXPOSED:
-				case CONTACT_EXPOSED:
-					appStateLiveData.setValue(hasError ? AppState.EXPOSED_ERROR : AppState.EXPOSED);
-					break;
-			}
+			appStateLiveData.setValue(tracingStatusWrapper.getAppState());
 		});
 
 		invalidateBluetoothState();
@@ -99,16 +82,16 @@ public class TracingViewModel extends AndroidViewModel {
 
 	public void resetSdk(Runnable onDeleteListener) {
 		if (tracingEnabledLiveData.getValue()) DP3T.stop(getApplication());
-		debugAppState = DebugAppState.NONE;
+		tracingStatusWrapper.setDebugAppState(DebugAppState.NONE);
 		DP3T.clearData(getApplication(), onDeleteListener);
 	}
 
-	public void invalidateTracingStatus() {
+	void invalidateTracingStatus() {
 		TracingStatus status = DP3T.getStatus(getApplication());
 		tracingStatusLiveData.setValue(status);
 	}
 
-	public LiveData<Boolean> getTracingEnabledLiveData() {
+	LiveData<Boolean> getTracingEnabledLiveData() {
 		return tracingEnabledLiveData;
 	}
 
@@ -120,7 +103,7 @@ public class TracingViewModel extends AndroidViewModel {
 		return errorsLiveData;
 	}
 
-	public LiveData<AppState> getAppStateLiveData() {
+	LiveData<AppState> getAppStateLiveData() {
 		return appStateLiveData;
 	}
 
@@ -158,11 +141,11 @@ public class TracingViewModel extends AndroidViewModel {
 	}
 
 	public DebugAppState getDebugAppState() {
-		return debugAppState;
+		return tracingStatusWrapper.getDebugAppState();
 	}
 
 	public void setDebugAppState(DebugAppState debugAppState) {
-		this.debugAppState = debugAppState;
+		tracingStatusWrapper.setDebugAppState(debugAppState);
 	}
 
 }
