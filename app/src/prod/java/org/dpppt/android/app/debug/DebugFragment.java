@@ -8,7 +8,7 @@ public class DebugFragment extends Fragment {
 	public static void startDebugFragment(FragmentManager parentFragmentManager) {
 		/*
 		 *
-		 * NOT IMPLEMNENTED ON PROD. ONLY MODIFY THIS FRAGMENT IN THE DEV FOLDER
+		 * NOT IMPLEMENTED ON PROD. ONLY MODIFY THIS FRAGMENT IN THE DEV FOLDER
 		 *
 		 * */
 	}

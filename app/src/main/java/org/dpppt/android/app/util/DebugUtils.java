@@ -5,7 +5,7 @@ import org.dpppt.android.app.BuildConfig;
 public class DebugUtils {
 
 	public static boolean isDev() {
-		return BuildConfig.FLAVOR.equals("dev");
+		return BuildConfig.IS_DEV;
 	}
 
 }

@@ -63,10 +63,8 @@ public class TracingViewModel extends AndroidViewModel {
 			tracingEnabledLiveData.setValue(status.isAdvertising() && status.isReceiving());
 			numberOfHandshakesLiveData.setValue(status.getNumberOfHandshakes());
 			tracingStatusWrapper.setStatus(status);
-			boolean isReportedExposed = tracingStatusWrapper.isReportedAsExposed();
-			boolean isContactExposed = tracingStatusWrapper.wasContactExposed();
 
-			exposedLiveData.setValue(new Pair<>(isReportedExposed, isContactExposed));
+			exposedLiveData.setValue(new Pair<>(tracingStatusWrapper.isReportedAsExposed(), tracingStatusWrapper.wasContactExposed()));
 
 			errorsLiveData.setValue(status.getErrors());
 

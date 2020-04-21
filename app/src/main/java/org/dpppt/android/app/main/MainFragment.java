@@ -124,13 +124,13 @@ public class MainFragment extends Fragment {
 	}
 
 	private void setupDebugButton(View view) {
-		View buttonInform = view.findViewById(R.id.main_button_debug);
+		View debugButton = view.findViewById(R.id.main_button_debug);
 		if (DebugUtils.isDev()) {
-			buttonInform.setVisibility(View.VISIBLE);
-			buttonInform.setOnClickListener(
+			debugButton.setVisibility(View.VISIBLE);
+			debugButton.setOnClickListener(
 					v -> DebugFragment.startDebugFragment(getParentFragmentManager()));
 		} else {
-			buttonInform.setVisibility(View.GONE);
+			debugButton.setVisibility(View.GONE);
 		}
 	}
 

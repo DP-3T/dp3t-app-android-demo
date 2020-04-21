@@ -56,7 +56,7 @@ public class TracingStatusWrapper implements TracingStatusInterface {
 			case CONTACT_EXPOSED:
 				return hasError ? AppState.EXPOSED_ERROR : AppState.EXPOSED;
 		}
-		return AppState.ERROR;
+		throw new IllegalStateException("Unkown debug AppState: " + debugAppState.toString());
 	}
 
 }
