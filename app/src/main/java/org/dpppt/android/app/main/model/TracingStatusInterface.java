@@ -1,17 +1,37 @@
+/*
+ * Copyright (c) 2020 Ubique Innovation AG <https://www.ubique.ch>
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ */
 package org.dpppt.android.app.main.model;
 
-import org.dpppt.android.app.debug.model.DebugAppState;
+import java.util.List;
+
+import org.dpppt.android.sdk.TracingStatus;
+import org.dpppt.android.sdk.internal.database.models.ExposureDay;
 
 public interface TracingStatusInterface {
 
-	boolean isReportedAsExposed();
+	void setStatus(TracingStatus status);
 
-	boolean wasContactExposed();
+	boolean isReportedAsInfected();
 
-	void setDebugAppState(DebugAppState debugAppState);
+	List<ExposureDay> getExposureDays();
 
-	DebugAppState getDebugAppState();
+	boolean wasContactReportedAsExposed();
 
-	AppState getAppState();
+	TracingState getTracingState();
+
+	NotificationState getNotificationState();
+
+	TracingStatus.ErrorState getTracingErrorState();
+
+	TracingStatus.ErrorState getReportErrorState();
+
+	long getDaysSinceExposure();
 
 }
