@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Ubique Innovation AG
-  ~ https://www.ubique.ch
-  ~ Copyright (c) 2020. All rights reserved.
+  ~ Copyright (c) 2020 Ubique Innovation AG <https://www.ubique.ch>
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  ~
+  ~ SPDX-License-Identifier: MPL-2.0
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,9 +18,9 @@
 
 	<androidx.appcompat.widget.Toolbar
 		android:id="@+id/contacts_toolbar"
-		style="@style/NextStep.Toolbar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		app:navigationContentDescription="@string/android_accessibility_back_button"
 		app:navigationIcon="@drawable/ic_arrow_back"
 		app:title="@string/debug_settings_title" />
 
@@ -27,8 +31,8 @@
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:paddingBottom="@dimen/spacing_medium_large"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			android:paddingBottom="@dimen/spacing_medium_large">
 
 			<ImageView
 				android:layout_width="match_parent"
@@ -41,14 +45,14 @@
 				android:maxHeight="@dimen/illustration_height"
 				android:paddingStart="@dimen/spacing_huge"
 				android:paddingEnd="@dimen/spacing_huge"
-				android:src="@drawable/ill_privacy" />
+				android:src="@drawable/legacy_ill_privacy" />
 
 			<androidx.cardview.widget.CardView
 				style="@style/NextStep.Card"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/spacing_medium_large"
 				android:layout_marginStart="@dimen/spacing_medium_large"
+				android:layout_marginTop="@dimen/spacing_medium_large"
 				android:layout_marginEnd="@dimen/spacing_medium_large">
 
 				<LinearLayout
@@ -78,19 +82,19 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginTop="@dimen/spacing_medium"
-						android:padding="@dimen/spacing_small"
 						android:background="@drawable/bg_status_bubble"
 						android:backgroundTint="@color/status_green_bg"
-						android:gravity="center_horizontal"/>
+						android:gravity="center_horizontal"
+						android:padding="@dimen/spacing_small" />
 
 					<Button
 						android:id="@+id/debug_button_reset"
-						android:layout_width="match_parent"
 						style="@style/NextStep.Button"
-						android:backgroundTint="@color/blue_main"
-						android:layout_marginTop="@dimen/spacing_large"
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:text="@string/debug_sdk_button_reset"/>
+						android:layout_marginTop="@dimen/spacing_large"
+						android:backgroundTint="@color/purple_main"
+						android:text="@string/debug_sdk_button_reset" />
 
 				</LinearLayout>
 
