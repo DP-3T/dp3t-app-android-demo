@@ -12,6 +12,18 @@ plugins {
 	id 'com.android.application'
 }
 
+ext.readProperty = { paramName ->
+	if (project.hasProperty(paramName)) {
+		return project.getProperties().get(paramName)
+	} else {
+		Properties properties = new Properties()
+		if (project.rootProject.file('local.properties').exists()) {
+			properties.load(project.rootProject.file('local.properties').newDataInputStream())
+		}
+		return properties.getProperty(paramName)
+	}
+}
+
 android {
 	compileSdkVersion 29
 	buildToolsVersion "29.0.3"
@@ -38,9 +50,9 @@ android {
 	signingConfigs {
 		release {
 			storeFile file('testKeystore')
-			storePassword '123456'
+			storePassword readProperty('keystorePassword')
 			keyAlias 'keyAlias'
-			keyPassword '123456'
+			keyPassword readProperty('keyAliasPassword')
 		}
 	}
 	buildTypes {
