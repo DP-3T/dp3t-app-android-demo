@@ -41,7 +41,7 @@ of the implementation.
 
 The project can be opened with Android Studio 3.6.1 or later or you can build the project with Gradle using
 ```sh
-$ ./gradlew assembleProdRelease
+$ ./gradlew assembleDevRelease
 ```
 The APK is generated under app/build/outputs/apk/prod/release/package-prod-release.apk
 
